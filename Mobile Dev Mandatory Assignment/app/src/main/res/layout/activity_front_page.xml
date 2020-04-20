@@ -33,6 +33,12 @@
             android:onClick="OnViewAllRoomsButtonClicked"
             android:text="View All Rooms" />
         <Button
+            android:id="@+id/viewAllReservationsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="OnViewAllReservationsButtonClicked"
+            android:text="View All Reservations" />
+        <Button
             android:id="@+id/bookRoomButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

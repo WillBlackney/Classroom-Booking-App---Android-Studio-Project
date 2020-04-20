@@ -30,7 +30,7 @@ public class ReservationActivity extends AppCompatActivity {
         headingView.setText("Room Id=" + originalReservation.getRoomId());
 
         EditText titleView = findViewById(R.id.singleBookTitleEditText);
-        titleView.setText(originalReservation.getUserID());
+        titleView.setText(originalReservation.getUserId());
 
         EditText authorView = findViewById(R.id.singleBookAuthorEditText);
         authorView.setText(originalReservation.getPurpose());

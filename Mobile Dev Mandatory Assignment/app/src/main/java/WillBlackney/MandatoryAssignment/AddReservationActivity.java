@@ -20,11 +20,12 @@ public class AddReservationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_room);
+        setContentView(R.layout.activity_add_reservation);
         progressBar = findViewById(R.id.addBookProgressbar);
     }
 
     public void addReservationButtonClicked(View view) {
+        /*
         EditText authorField = findViewById(R.id.addRoomIdEditText);
         EditText titleField = findViewById(R.id.addRoomNameEditText);
         EditText publisherField = findViewById(R.id.addRoomDescriptionEditText);
@@ -43,7 +44,7 @@ public class AddReservationActivity extends AppCompatActivity {
             priceField.setError("Not a valid price");
             return;
         }
-
+*/
         ReservationService reservationService = ApiUtils.getReservationService();
         Reservation reservation = new Reservation();
 
@@ -56,8 +57,8 @@ public class AddReservationActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Reservation theNewReservation = response.body();
                     Log.d("MYROOMS", theNewReservation.toString());
-                    Toast.makeText(AddReservationActivity.this, "Room added, id: " + theNewReservation.getRoomId(), Toast.LENGTH_SHORT).show();
-//                    Snackbar.make(view, "Room added, id: " + theNewRoom.getID(), Snackbar.LENGTH_LONG).show();
+                    Toast.makeText(AddReservationActivity.this, "Reservation added, id: " + theNewReservation.getRoomId(), Toast.LENGTH_SHORT).show();
+//                    Snackbar.make(view, "Rservation added, id: " + theNewRoom.getID(), Snackbar.LENGTH_LONG).show();
                 } else {
                     String problem = "Problem: " + response.code() + " " + response.message();
                     Log.e("MYROOMS", problem);

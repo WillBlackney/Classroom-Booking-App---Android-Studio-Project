@@ -9,7 +9,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewAllRoomsActivity"></activity>
+        <activity android:name=".ViewAllReservationsActivity"></activity>
+        <activity android:name=".ViewAllRoomsActivity" />
         <activity android:name=".FrontPageActivity" />
         <activity android:name=".LoginPageActivity" />
         <activity android:name=".AddReservationActivity" />

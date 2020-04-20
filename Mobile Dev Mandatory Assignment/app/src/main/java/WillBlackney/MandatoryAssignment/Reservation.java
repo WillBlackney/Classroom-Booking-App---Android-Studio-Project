@@ -10,29 +10,29 @@ import androidx.annotation.NonNull;
 public class Reservation implements Serializable
 {
     // variables
-    @SerializedName("ID")
+    @SerializedName("id")
     @Expose
     private Integer  id;
 
-    @SerializedName("From Time")
+    @SerializedName("fromTime")
     @Expose
     private Integer  fromTime;
 
-    @SerializedName("To Time")
+    @SerializedName("toTime")
     @Expose
     private Integer  toTime;
 
-    @SerializedName("User ID")
+    @SerializedName("userId")
     @Expose
-    private String userID;
+    private String userId;
 
-    @SerializedName("Purpose")
+    @SerializedName("purpose")
     @Expose
     private String purpose;
 
-    @SerializedName("Room ID")
+    @SerializedName("roomId")
     @Expose
-    private Integer roomID;
+    private Integer roomId;
 
     // Properties + getters
     public Integer getID() {
@@ -59,12 +59,12 @@ public class Reservation implements Serializable
         this.toTime = toTime;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPurpose() {
@@ -76,10 +76,10 @@ public class Reservation implements Serializable
     }
 
     public int getRoomId(){
-        return roomID;
+        return roomId;
     }
-    public void setRoomID(Integer roomID){
-        this.roomID = roomID;
+    public void setRoomId(Integer roomId){
+        this.roomId = roomId;
     }
 
 
@@ -94,14 +94,14 @@ public class Reservation implements Serializable
         this.id = _id;
         this.fromTime =_fromTime;
         this.toTime = _toTime;
-        this.userID = _userID;
+        this.userId = _userID;
         this.purpose = _purpose;
-        this.roomID = _roomID;
+        this.roomId = _roomID;
     }
 
     @NonNull
     @Override
     public String toString() {
-        return id + ": " + fromTime + " " + toTime + ", " + userID +", " + purpose +", " + roomID;
+        return id + ": " + fromTime + " " + toTime + ", " + userId +", " + purpose +", " + roomId;
     }
 }

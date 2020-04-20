@@ -7,32 +7,45 @@
     tools:context=".AddReservationActivity">
 
     <EditText
-        android:id="@+id/addRoomIdEditText"
+        android:id="@+id/addReservationIdEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Author"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/addRoomNameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Title"
+        android:hint="ID"
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/addRoomDescriptionEditText"
+        android:id="@+id/addReservationFromTimeEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Publisher"
+        android:hint="From Time"
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/addRoomCapacityEditText"
+        android:id="@+id/addReservationToTimeEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Price"
+        android:hint="To Time"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/addReservationUserIdEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="User ID"
         android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/addReservationPurposeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Purpose"
+        android:inputType="text" />
+    <EditText
+        android:id="@+id/addReservationRoomIdEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Room ID"
+        android:inputType="text" />
 
     <Button
         android:layout_width="match_parent"
