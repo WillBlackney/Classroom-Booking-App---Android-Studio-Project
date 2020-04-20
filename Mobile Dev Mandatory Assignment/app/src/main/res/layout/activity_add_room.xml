@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddRoomActivity">
+
+    <EditText
+        android:id="@+id/addRoomIdEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/addRoomNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/addRoomDescriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/addRoomCapacityEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Capacity"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/addRoomRemarksEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Remarks"
+        android:inputType="text" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="addRoomButtonClicked"
+        android:text="Add" />
+
+    <TextView
+        android:id="@+id/addBookMessageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/addBookProgressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
+
+</LinearLayout>
