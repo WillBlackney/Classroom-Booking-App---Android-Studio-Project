@@ -63,7 +63,7 @@ public class ViewAllReservationsActivity extends AppCompatActivity
     }
 
     private void getAndShowAllReservations() {
-        ReservationService reservationService = ApiUtils.getReservationService();
+        ReservationService reservationService = RestController.GetReservationService();
         Call<List<Reservation>> getAllRoomsCall = reservationService.getAllReservations();
         //Log.d(LOG_TAG, "All rooms GET string: " + roomService.getAllRooms().toString());
 

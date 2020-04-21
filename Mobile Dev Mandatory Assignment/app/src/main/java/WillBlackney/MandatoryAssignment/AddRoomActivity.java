@@ -32,7 +32,7 @@ public class AddRoomActivity extends AppCompatActivity {
         EditText remarksField = findViewById(R.id.addRoomRemarksEditText);
 
 
-        RoomService roomService = ApiUtils.getRoomService();
+        RoomService roomService = RestController.GetRoomService();
         Room room = new Room();
 
         Call<Room> saveRoomCall = roomService.saveRoomBody(room);

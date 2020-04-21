@@ -9,8 +9,8 @@ import android.view.View;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class FrontPageActivity extends AppCompatActivity {
-
+public class FrontPageActivity extends AppCompatActivity
+{
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,6 +39,16 @@ public class FrontPageActivity extends AppCompatActivity {
     public void GoToViewAllReservationsPage()
     {
         Intent intent = new Intent(FrontPageActivity.this, ViewAllReservationsActivity.class);
+        startActivity(intent);
+    }
+
+    public void OnBookRoomButtonClicked(View view)
+    {
+        GoToBookRoomPage();
+    }
+    public void GoToBookRoomPage()
+    {
+        Intent intent = new Intent(FrontPageActivity.this, BookRoomActivity.class);
         startActivity(intent);
     }
 }

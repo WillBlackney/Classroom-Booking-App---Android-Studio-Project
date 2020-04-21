@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getAndShowAllRooms() {
-        RoomService roomService = ApiUtils.getRoomService();
+        RoomService roomService = RestController.GetRoomService();
         Call<List<Room>> getAllRoomsCall = roomService.getAllRooms();
         //Log.d(LOG_TAG, "All rooms GET string: " + roomService.getAllRooms().toString());
 

@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ViewAllReservationsActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <ProgressBar
         android:id="@+id/mainProgressbar"
@@ -37,11 +24,20 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_input_add" />
 
-    <Button
-        android:id="@+id/backToFrontPageButton"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="136dp"
-        android:onClick="OnBackToFrontPageButtonClicked"
-        android:text="Back To Front Page" />
+        android:layout_height="486dp"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/backToFrontPageButton"
+            android:layout_width="match_parent"
+            android:layout_height="91dp"
+            android:onClick="OnBackToFrontPageButtonClicked"
+            android:text="Back To Front Page" />
+    </LinearLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

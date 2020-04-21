@@ -50,6 +50,7 @@ public class ViewAllRoomsActivity extends AppCompatActivity
         SwipeRefreshLayout refreshLayout = findViewById(R.id.mainSwiperefresh);
         refreshLayout.setOnRefreshListener(() -> {
             getAndShowAllRooms();
+            //getAndShowRoomById(1);
             refreshLayout.setRefreshing(false);
         });
 
@@ -60,10 +61,16 @@ public class ViewAllRoomsActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
         getAndShowAllRooms();
+        //getAndShowRoomById(1);
     }
 
-    private void getAndShowAllRooms() {
-        RoomService roomService = ApiUtils.getRoomService();
+    private void getAndShowAllRooms()
+    {
+        messageView.setText("");
+        progressBar.setVisibility(View.VISIBLE);
+
+
+        RoomService roomService = RestController.GetRoomService();
         Call<List<Room>> getAllRoomsCall = roomService.getAllRooms();
         //Log.d(LOG_TAG, "All rooms GET string: " + roomService.getAllRooms().toString());
 
@@ -73,20 +80,81 @@ public class ViewAllRoomsActivity extends AppCompatActivity
         getAllRoomsCall.enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
-                try {
-                    Thread.sleep(5000);
-                    // sleep a little to get a chance to see the progressbar in action
-                    // don't do this at home
-                } catch (InterruptedException e) {
-                }
+                try {Thread.sleep(5000);}
+                catch (InterruptedException e) { }
+
                 progressBar.setVisibility(View.INVISIBLE);
-                if (response.isSuccessful()) {
+                if (response.isSuccessful())
+                {
 
                     Log.d(LOG_TAG, "All rooms GET string: " + response.body().toString());
 
                     List<Room> allRooms = response.body();
                     Log.d(LOG_TAG, allRooms.toString());
                     populateRecyclerView(allRooms);
+                } else
+                    {
+                    String message = "Problem " + response.code() + " " + response.message();
+                    Log.d(LOG_TAG, message);
+                    messageView.setText(message);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Room>> call, Throwable t) {
+                progressBar.setVisibility(View.INVISIBLE);
+                Log.e(LOG_TAG, t.getMessage());
+                messageView.setText(t.getMessage());
+            }
+        });
+
+
+    }
+
+    private void getAndShowRoomById(int id)
+    {
+        RoomService roomService = RestController.GetRoomService();
+        Call<List<Room>> getAllRoomsCall = roomService.getAllRooms();
+        //Log.d(LOG_TAG, "All rooms GET string: " + roomService.getAllRooms().toString());
+
+        messageView.setText("");
+        progressBar.setVisibility(View.VISIBLE);
+
+        getAllRoomsCall.enqueue(new Callback<List<Room>>() {
+            @Override
+            public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
+                try
+                {
+                    Thread.sleep(5000);
+                }
+                catch (InterruptedException e)
+                {
+                }
+
+                progressBar.setVisibility(View.INVISIBLE);
+                if (response.isSuccessful()) {
+
+                    Log.d(LOG_TAG, "All rooms GET string: " + response.body().toString());
+
+                    List<Room> allRooms = response.body();
+                    Room matchingRoom = null;
+
+                    for(Room roomy: allRooms)
+                    {
+                        if(id == roomy.getID())
+                        {
+                            matchingRoom = roomy;
+                            Log.d(LOG_TAG, "Found a matching room with ID: " + roomy.getID().toString());
+                        }
+                    }
+
+                    if(matchingRoom != null)
+                    {
+                        allRooms.clear();
+                        allRooms.add(matchingRoom);
+                        populateRecyclerView(allRooms);
+                    }
+
                 } else {
                     String message = "Problem " + response.code() + " " + response.message();
                     Log.d(LOG_TAG, message);
@@ -102,6 +170,7 @@ public class ViewAllRoomsActivity extends AppCompatActivity
             }
         });
     }
+
     private void populateRecyclerView(List<Room> allRooms) {
         RecyclerView recyclerView = findViewById(R.id.mainRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -122,7 +191,6 @@ public class ViewAllRoomsActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -137,7 +205,6 @@ public class ViewAllRoomsActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-
     public void OnBackToFrontPageButtonClicked(View view)
     {
         ReturnToFrontPage();

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="WillBlackney.MandatoryAssignment.LoginPageActivity">
 
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="136dp"
@@ -13,11 +14,10 @@
         android:text="Login Page"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.089" />
-
+        app:layout_constraintVertical_bias="0.088" />
 
     <EditText
         android:id="@+id/userNameEditText"

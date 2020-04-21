@@ -15,7 +15,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginPageActivity extends AppCompatActivity {
 
@@ -39,6 +38,7 @@ public class LoginPageActivity extends AppCompatActivity {
 
     public void onStart(){
         super.onStart();
+        FireBaseManager.Initialize();
     }
 
     public void OnLoginButtonClicked(View view)
@@ -48,26 +48,28 @@ public class LoginPageActivity extends AppCompatActivity {
         TrySignIn(email, password);
     }
 
-    public void TrySignIn(String email, String password){
-        mAuth.signInWithEmailAndPassword(email, password)
+    public void TrySignIn(String email, String password)
+    {
+        FireBaseManager.authorizer.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                    public void onComplete(@NonNull Task<AuthResult> task)
+                    {
+                        if (task.isSuccessful())
+                        {
+                            // Sign in successful
                             Log.d("FIREBASE", "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
+                            FireBaseManager.SetCurrentUser(FireBaseManager.authorizer.getCurrentUser());
+                            Log.d("FIREBASE", "Logged in user: " + FireBaseManager.GetCurrentUser().getEmail(), task.getException());
                             LoadUserFrontPage();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("FIREBASE", "signInWithEmail:failure", task.getException());
-                            //Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
-                                  //  Toast.LENGTH_SHORT).show();
-                           // updateUI(null);
                         }
-
-                        // ...
+                        else
+                            {
+                            // Sign in failed
+                            Log.w("FIREBASE", "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginPageActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
     }

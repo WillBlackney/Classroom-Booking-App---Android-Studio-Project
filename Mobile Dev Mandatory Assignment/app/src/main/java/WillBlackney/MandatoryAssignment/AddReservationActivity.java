@@ -3,7 +3,6 @@ package WillBlackney.MandatoryAssignment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -45,7 +44,7 @@ public class AddReservationActivity extends AppCompatActivity {
             return;
         }
 */
-        ReservationService reservationService = ApiUtils.getReservationService();
+        ReservationService reservationService = RestController.GetReservationService();
         Reservation reservation = new Reservation();
 
         Call<Reservation> saveRoomCall = reservationService.saveReservationBody(reservation);
