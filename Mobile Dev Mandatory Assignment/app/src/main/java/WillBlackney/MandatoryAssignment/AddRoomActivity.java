@@ -15,8 +15,10 @@ import retrofit2.Response;
 
 public class AddRoomActivity extends AppCompatActivity {
 
+    // Variables
     private ProgressBar progressBar;
 
+    // Logic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -14,42 +14,43 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginPageActivity extends AppCompatActivity {
-
-    private FirebaseAuth mAuth;
-
+public class LoginPageActivity extends AppCompatActivity
+{
+    // Variables
     public Button signInButton;
     public EditText userNameField;
     public EditText passwordField;
 
+    // Initialization
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
-        mAuth = FirebaseAuth.getInstance();
 
         signInButton = findViewById(R.id.loginButton);
         userNameField = findViewById(R.id.userNameEditText);
         passwordField = findViewById(R.id.passwordEditText);
     }
-
     public void onStart(){
         super.onStart();
         FireBaseManager.Initialize();
     }
 
-    public void OnLoginButtonClicked(View view)
-    {
+    // GUI Logic
+    public void OnLoginButtonClicked(View view) {
         String email = userNameField.getText().toString();
         String password = passwordField.getText().toString();
         TrySignIn(email, password);
     }
+    public void LoadUserFrontPage(){
+        Log.d("LoginPageActivity","Log out process started");
+        Intent intent = new Intent(getBaseContext(), FrontPageActivity.class);
+        startActivity(intent);
+    }
 
-    public void TrySignIn(String email, String password)
-    {
+    // Intent + Sign in Logic
+    public void TrySignIn(String email, String password) {
         FireBaseManager.authorizer.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -74,10 +75,6 @@ public class LoginPageActivity extends AppCompatActivity {
                 });
     }
 
-    public void LoadUserFrontPage()
-    {
-        Intent intent = new Intent(getBaseContext(), FrontPageActivity.class);
-        startActivity(intent);
-    }
+
 
 }

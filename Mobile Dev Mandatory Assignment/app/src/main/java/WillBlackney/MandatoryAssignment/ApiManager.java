@@ -15,9 +15,11 @@ import retrofit2.Response;
 
 class ApiManager
 {
+    // Constructor
     public ApiManager()
     {
     }
+
 
     public static List<Room> GetAllRooms()
     {
@@ -33,8 +35,6 @@ class ApiManager
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
                 try {Thread.sleep(5000); }
                 catch(InterruptedException e) { }
-
-               // progressBar.setVisibility(View.INVISIBLE);
                 if (response.isSuccessful())
                 {
                     Log.d("ApiManager", "All rooms GET string: " + response.body().toString());
@@ -42,21 +42,17 @@ class ApiManager
                     List<Room> foundRooms = response.body();
                     Log.d("ApiManager", foundRooms.toString());
                     allRooms.addAll(foundRooms);
-                    //populateRecyclerView(allRooms);
                 }
                 else
                     {
                     String message = "Problem " + response.code() + " " + response.message();
-                    //Log.d(LOG_TAG, message);
-                    //messageView.setText(message);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Room>> call, Throwable t) {
-               // progressBar.setVisibility(View.INVISIBLE);
+            public void onFailure(Call<List<Room>> call, Throwable t)
+            {
                 Log.e("ApiManager", t.getMessage());
-                //messageView.setText(t.getMessage());
             }
 
 

@@ -15,11 +15,11 @@ import java.util.List;
 
 public class BookRoomActivity extends AppCompatActivity
 {
+    // Variables
     public EditText roomIdEditText;
     public EditText dateEditText;
     public EditText startTimeEditText;
     public EditText endTimeEditText;
-    //public Room roomReturned;
 
 
     @Override
@@ -54,7 +54,7 @@ public class BookRoomActivity extends AppCompatActivity
         Room room = GetRoomById((roomIdInt));
 
         // check that rooms exists and is available
-        if(room != null && IsRoomBookable(room))
+        if(room != null && IsRoomBookable(room) && FireBaseManager.IsUserLoggedIn())
         {
             // room available, make booking
             BookingManager.CreateBooking(room.getID(),room.getName(), FireBaseManager.GetCurrentUser().getEmail(), fromTimeInt, toTimeInt);
@@ -63,7 +63,7 @@ public class BookRoomActivity extends AppCompatActivity
                     Toast.LENGTH_SHORT).show();
         }
         else {
-            // room not availble for booking
+            // room not available for booking
             Log.d("BoomRoomActivity","Booking Failed");
             Toast.makeText(BookRoomActivity.this, "Booking Failed",
                     Toast.LENGTH_SHORT).show();
@@ -75,7 +75,6 @@ public class BookRoomActivity extends AppCompatActivity
         Log.d("BoomRoomActivity","IsRoomBookable() called...");
         return true;
     }
-
     public Room GetRoomById(Integer id)
     {
         Log.d("BoomRoomActivity","GetRoomById() called, ID: " + id.toString());

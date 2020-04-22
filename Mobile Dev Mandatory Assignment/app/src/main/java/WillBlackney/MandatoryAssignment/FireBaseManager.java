@@ -7,17 +7,18 @@ import com.google.firebase.auth.FirebaseUser;
 
 class FireBaseManager
 {
+    // Base constructor
     public FireBaseManager()
     {
 
     }
 
+    // Variables
     public static FirebaseAuth authorizer;
-
     public static FirebaseUser currentUser;
-
     public static boolean alreadyInitialized;
 
+    // Initialization
     public static void Initialize()
     {
         Log.d("FIREBASE", "FireBaseManager.Initialize() called...");
@@ -32,6 +33,8 @@ class FireBaseManager
         }
 
     }
+
+    // Get + Set Firebase Data
     public static FirebaseUser GetCurrentUser()
     {
         Log.d("FIREBASE", "FireBaseManager.GetCurrentUser() called...");
@@ -41,5 +44,26 @@ class FireBaseManager
     {
         Log.d("FIREBASE", "FireBaseManager.SetCurrentUser() called...");
         currentUser = newUser;
+    }
+
+    // Conditional Checks
+    public static boolean IsUserLoggedIn()
+    {
+        if (currentUser != null)
+        {
+            return true;
+        }
+        else
+            {
+            return false;
+        }
+    }
+
+    // Log out
+    public static void HandleLogOut()
+    {
+        Log.d("FIREBASE","FireBaseManager.HandleLogOut() called...");
+        SetCurrentUser(null);
+
     }
 }

@@ -87,7 +87,7 @@ public class Reservation implements Serializable
     // Constructors
     public Reservation()
     {
-
+        // empty constructor for Json + Gson
     }
     public Reservation(Integer _id, Integer _fromTime, Integer _toTime, String _userID, String _purpose, Integer _roomID)
     {
