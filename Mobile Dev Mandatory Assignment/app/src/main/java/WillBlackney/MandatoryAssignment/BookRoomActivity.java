@@ -57,18 +57,17 @@ public class BookRoomActivity extends AppCompatActivity
         Integer dateInt = Integer.parseInt(dateString);
         */
 
+        // TO DO: construct an actual reservation object out of the users input
         // create new reservation (for testing)
-        Reservation testReservation = new Reservation(7,1765101022,1765101100,"test ID","lunch",1);
+        Reservation testReservation = new Reservation(7,1765101022,1765101100,"william.blackney@hotmail.com","lunch",1);
 
         // is post action valid?
-        if(IsRoomBookable(testReservation))
+        if(IsRoomBookable(testReservation) &&
+        FireBaseManager.IsUserLoggedIn())
         {
             // Post!!
             PostBooking(testReservation);
         }
-
-
-
     }
 
 
@@ -84,14 +83,16 @@ public class BookRoomActivity extends AppCompatActivity
         rs.saveReservationBody(reservation).enqueue(new Callback<Reservation>() {
             @Override
             public void onResponse(Call<Reservation> call, Response<Reservation> response) {
-                if(response.body() != null){
+                if(response.body() != null)
+                {
                     Log.d("REST.POST","Successfully posted to REST Service, body: " + response.body().toString());
                 }
 
             }
 
             @Override
-            public void onFailure(Call<Reservation> call, Throwable t) {
+            public void onFailure(Call<Reservation> call, Throwable t)
+            {
                 Log.d("REST.POST","Failure to post to REST Service");
             }
         });

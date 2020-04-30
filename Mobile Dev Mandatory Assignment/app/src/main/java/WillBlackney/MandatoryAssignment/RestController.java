@@ -1,19 +1,18 @@
 package WillBlackney.MandatoryAssignment;
 
-class RestController {
-    private RestController() {
+class RestController
+{
+    private RestController(){}
 
-    }
+    private static final String BASE_URL = "http://anbo-roomreservationv3.azurewebsites.net/api/";
 
-     private static final String BASE_URL = "http://anbo-roomreservationv3.azurewebsites.net/api/";
-
-    public static ReservationService GetReservationService() {
-
+    public static ReservationService GetReservationService()
+    {
         return RetrofitClient.getClient(BASE_URL).create(ReservationService.class);
     }
 
-    public static RoomService GetRoomService() {
-
+    public static RoomService GetRoomService()
+    {
         return RetrofitClient.getClient(BASE_URL).create(RoomService.class);
     }
 

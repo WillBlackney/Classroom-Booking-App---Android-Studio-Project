@@ -52,7 +52,8 @@ public class LoginPageActivity extends AppCompatActivity
     // Intent + Sign in Logic
     public void TrySignIn(String email, String password) {
         FireBaseManager.authorizer.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
+                {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
