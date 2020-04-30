@@ -9,7 +9,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BookRoomActivity"></activity>
+        <activity
+            android:name=".MyBookingsActivity"
+            android:label="@string/title_activity_my_bookings"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".BookRoomActivity" />
         <activity android:name=".ViewAllReservationsActivity" />
         <activity android:name=".ViewAllRoomsActivity" />
         <activity android:name=".FrontPageActivity" />

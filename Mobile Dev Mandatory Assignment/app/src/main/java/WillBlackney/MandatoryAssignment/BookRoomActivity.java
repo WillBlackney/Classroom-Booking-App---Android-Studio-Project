@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Date;
 import java.util.List;
 
 public class BookRoomActivity extends AppCompatActivity
@@ -38,6 +39,7 @@ public class BookRoomActivity extends AppCompatActivity
     {
         Log.d("BoomRoomActivity","OnBookRoomButtonClicked() called...");
 
+        /*
         // Get room ID from user input
         String roomIdString = roomIdEditText.toString();
         Integer roomIdInt = Integer.parseInt(roomIdString);
@@ -50,49 +52,55 @@ public class BookRoomActivity extends AppCompatActivity
         String toTimeString = startTimeEditText.toString();
         Integer toTimeInt = Integer.parseInt(toTimeString);
 
-        // get room from rest
-        Room room = GetRoomById((roomIdInt));
+        // Get date
+        String dateString = dateEditText.toString();
+        Integer dateInt = Integer.parseInt(dateString);
+        */
 
-        // check that rooms exists and is available
-        if(room != null && IsRoomBookable(room) && FireBaseManager.IsUserLoggedIn())
+        // create new reservation (for testing)
+        Reservation testReservation = new Reservation(7,1765101022,1765101100,"test ID","lunch",1);
+
+        // is post action valid?
+        if(IsRoomBookable(testReservation))
         {
-            // room available, make booking
-            BookingManager.CreateBooking(room.getID(),room.getName(), FireBaseManager.GetCurrentUser().getEmail(), fromTimeInt, toTimeInt);
-            Log.d("BoomRoomActivity","Booking Successful");
-            Toast.makeText(BookRoomActivity.this, "Booking Successful",
-                    Toast.LENGTH_SHORT).show();
+            // Post!!
+            PostBooking(testReservation);
         }
-        else {
-            // room not available for booking
-            Log.d("BoomRoomActivity","Booking Failed");
-            Toast.makeText(BookRoomActivity.this, "Booking Failed",
-                    Toast.LENGTH_SHORT).show();
-        }
+
+
 
     }
-    public boolean IsRoomBookable(Room room)
+
+
+    public void PostBooking(Reservation reservation){
+
+        Toast toast = Toast.makeText(getBaseContext(),"Posting booking...",Toast.LENGTH_LONG);
+        toast.show();
+
+        Log.d("BoomRoomActivity","PostBooking() called...");
+        ReservationService rs = RestController.GetReservationService();
+
+
+        rs.saveReservationBody(reservation).enqueue(new Callback<Reservation>() {
+            @Override
+            public void onResponse(Call<Reservation> call, Response<Reservation> response) {
+                if(response.body() != null){
+                    Log.d("REST.POST","Successfully posted to REST Service, body: " + response.body().toString());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Reservation> call, Throwable t) {
+                Log.d("REST.POST","Failure to post to REST Service");
+            }
+        });
+    }
+
+    public boolean IsRoomBookable(Reservation reservation)
     {
         Log.d("BoomRoomActivity","IsRoomBookable() called...");
         return true;
     }
-    public Room GetRoomById(Integer id)
-    {
-        Log.d("BoomRoomActivity","GetRoomById() called, ID: " + id.toString());
 
-        List<Room> allRooms = ApiManager.GetAllRooms();
-
-        Room roomReturned = null;
-        for(Room roomy: allRooms)
-        {
-            if(roomy.getID() == id){
-                roomReturned = roomy;
-            }
-        }
-
-        if(roomReturned ==  null){
-            Log.d("BookRoomActivity","WARNING! BookRoomActivity.GetRoomById() returning null!!");
-        }
-
-        return roomReturned;
-    }
 }

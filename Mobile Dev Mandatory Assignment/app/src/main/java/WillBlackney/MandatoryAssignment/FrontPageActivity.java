@@ -41,6 +41,10 @@ public class FrontPageActivity extends AppCompatActivity
     {
         GoToLogInScreen();
     }
+    public void OnMyReservationsButtonClicked(View view)
+    {
+        GoToMyReservationsPage();
+    }
 
     // Intents + GUI Logic
     public void GoToViewAllRoomsPage() {
@@ -58,6 +62,10 @@ public class FrontPageActivity extends AppCompatActivity
     public void GoToLogInScreen() {
         FireBaseManager.HandleLogOut();
         Intent intent = new Intent(getBaseContext(), LoginPageActivity.class);
+        startActivity(intent);
+    }
+    public void GoToMyReservationsPage()  {
+        Intent intent = new Intent(FrontPageActivity.this, MyBookingsActivity.class);
         startActivity(intent);
     }
 }

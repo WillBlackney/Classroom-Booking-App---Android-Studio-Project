@@ -59,7 +59,7 @@
             android:id="@+id/myReservationsButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="OnViewAllRoomsButtonClicked"
+            android:onClick="OnMyReservationsButtonClicked"
             android:text="My Reservations" />
         <Button
             android:id="@+id/logOutButton"

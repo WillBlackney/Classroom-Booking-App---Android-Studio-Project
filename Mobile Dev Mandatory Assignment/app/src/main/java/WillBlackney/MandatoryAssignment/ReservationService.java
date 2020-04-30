@@ -31,10 +31,10 @@ public interface ReservationService
 */
 
     @DELETE("Reservations/{id}")
-    Call<Reservation> deleteBook(@Path("id") int id);
+    Call<Reservation> deleteReservation(@Path("id") int id);
 
     @PUT("Reservations/{id}")
-    Call<Reservation> updateBook(@Path("id") int id, @Body Reservation reservation);
+    Call<Reservation> updateReservation(@Path("id") int id, @Body Reservation reservation);
 
 
 }
